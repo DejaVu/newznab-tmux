@@ -7,7 +7,7 @@ $_php = getenv("PHP");
 $db = new DB();
 $query = "select count(*) from releases";
 
-$result_begin = mysql_query($query);
+$result_begin = $db->query($query);
 
 if (!$result_begin) {
   $message  = 'Invalid query: ' . mysql_error() . "\n";
@@ -24,10 +24,9 @@ $time = TIME();
 $i=1;
 while($i=1)
 {
-  $result_inner_loop = mysql_query($query);
+  $result_inner_loop = $db->query($query);
   sleep(60);
-  $result_loop = mysql_query($query);
-
+  $result_loop = $db->query($query);
   if (!$result_inner_loop) {
     $message  = 'Invalid query: ' . mysql_error() . "\n";
     $message .= 'Whole query: ' . $query;
